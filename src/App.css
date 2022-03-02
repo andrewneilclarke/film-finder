@@ -47,3 +47,19 @@
   border: none;
   background-color: rgb(93, 174, 199);
 }
+
+.rating {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rating div {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: x-large;
+
+}

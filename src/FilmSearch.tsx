@@ -1,34 +1,29 @@
 import React, { useState, useEffect } from "react"
 import FilmDisplay from "./FilmDisplay"
+import { Film } from './Types'
 
-interface Props {
 
-    // API_KEY: string,
-}
-
-const FilmSearch = () => {
+const FilmSearch: React.FC = () => {
     const [filmSearch, setFilmSearch] = useState('')
-    const setQuery = (e: React.FormEvent, searchQuery: string) => {
-        e.preventDefault()
-        console.log(searchQuery)
-    }
-    const [data, setData] = useState<any>({})
-    const [isLoading, setIsLoading] = useState(true)
+    const [finalQuery, setFinalQuery] = useState('The imitation game')
+    const [data, setData] = useState<Film | null>(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     const API_KEY = 'c5e8f2c8'
 
-    const { Title, Year, imdbRating, Awards } = data
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent, searchQuery: string) => {
         e.preventDefault()
-        console.log('submit form')
+        setIsLoading(true)
+        setFinalQuery(searchQuery)
     }
 
     useEffect(() => {
+        console.log('useEffect ran')
         const fetchData = async () => {
             try {
-                const result = await (await fetch(`http://www.omdbapi.com/?type=movie&t=gump&apikey=${API_KEY}`)).json()
+                const result = await (await fetch(`http://www.omdbapi.com/?type=movie&t=${finalQuery}&apikey=${API_KEY}`)).json()
                 setData(result)
+                setIsLoading(false)
             } catch (err) {
                 console.log(err)
             }
@@ -40,16 +35,17 @@ const FilmSearch = () => {
         // }, [data])
 
 
-    }, [API_KEY])
+    }, [API_KEY, finalQuery])
     console.log(data)
 
     return (
         <>
-            <form className="form" onSubmit={(e) => setQuery(e, filmSearch)}>
+            <form className="form" onSubmit={(e) => handleSubmit(e, filmSearch)}>
                 <input type="text" value={filmSearch} className="search-input" onChange={(e) => setFilmSearch(e.target.value)} />
                 <button type="submit">go</button>
             </form>
-            <FilmDisplay data={data} />
+            {isLoading && '...Loading'}
+            {data && <FilmDisplay data={data} />}
         </>
     )
 }

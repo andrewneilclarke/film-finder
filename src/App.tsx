@@ -5,7 +5,6 @@ import FilmSearch from './FilmSearch';
 
 function App() {
 
-
   return (
 
     <div className="App">
