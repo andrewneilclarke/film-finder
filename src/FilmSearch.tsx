@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import FilmDisplay from "./FilmDisplay"
 import { Film } from './Types'
 
@@ -12,12 +12,19 @@ const FilmSearch: React.FC = () => {
 
     const API_KEY = process.env.REACT_APP_API_KEY
 
+    const inputRef = useRef<HTMLInputElement>(null)
+
     const handleSubmit = (e: React.FormEvent, searchQuery: string) => {
         e.preventDefault()
         setIsLoading(true)
         setFinalQuery(searchQuery)
         setIsLoading(false)
     }
+
+    useEffect(() => {
+        inputRef.current?.focus()
+    }, [])
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,7 +47,7 @@ const FilmSearch: React.FC = () => {
     return (
         <>
             <form className="form" onSubmit={(e) => { if (filmSearch) { handleSubmit(e, filmSearch) } }}>
-                <input type="text" value={filmSearch} className="search-input" onChange={(e) => setFilmSearch(e.target.value)} />
+                <input ref={inputRef} type="text" value={filmSearch} className="search-input" onChange={(e) => setFilmSearch(e.target.value)} />
                 <button type="submit">go</button>
             </form>
             {isLoading && '...Loading'}
