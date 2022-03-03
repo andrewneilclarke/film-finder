@@ -29,8 +29,9 @@ const FilmDisplay: React.FC<Props> = ({ data }) => {
     }
 
     const averageScore = getAverage(metascoreNum, IMDBScore, rottenTomatoesScore)
-
+    console.log(data)
     return <div>
+        {!data.Response && <div>Film not found!</div>}
         {data && <div className="film-info">
             <h1>{Title} - {Year}</h1>
             <h5>{Genre}</h5>

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap');
 
+:root {
+  --blue: rgb(93, 174, 199);;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -7,7 +11,10 @@
   align-items: center;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
+  height: 100vh;
   letter-spacing: 1px;
+  background-color: #282c34;
+  color: #999
 }
 
 
@@ -28,7 +35,8 @@
   border-radius: 100px;
   outline: none;
   border: 1px solid #444;
-  min-height: 1em;
+  height: 20px;
+  max-width: 65vw;
   padding: .6em;
   font-size: 3em;
   display: flex;

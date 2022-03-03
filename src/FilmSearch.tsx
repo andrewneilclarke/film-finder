@@ -25,7 +25,6 @@ const FilmSearch: React.FC = () => {
         inputRef.current?.focus()
     }, [])
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -53,6 +52,7 @@ const FilmSearch: React.FC = () => {
             {isLoading && '...Loading'}
             {error && JSON.stringify(error)}
             {data?.Actors && <FilmDisplay data={data} />}
+            {!data?.Response && console.log(data?.Response)}
         </>
     )
 }
