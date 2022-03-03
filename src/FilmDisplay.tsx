@@ -7,7 +7,6 @@ interface Props {
 
 const FilmDisplay: React.FC<Props> = ({ data }) => {
     const { Title, Year, imdbRating, Awards, Genre, Ratings, Metascore } = data
-    console.log(data)
     const metascoreNum = parseFloat(Metascore)
     const IMDBScore = parseFloat(imdbRating) * 10
     const rottenTomatoesScore = parseFloat(Ratings[1]?.Value.split('%')[0])
