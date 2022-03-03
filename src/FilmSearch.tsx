@@ -10,7 +10,8 @@ const FilmSearch: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<unknown>('')
 
-    const API_KEY = 'c5e8f2c8'
+    const API_KEY = process.env.REACT_APP_API_KEY
+    console.log(API_KEY)
 
     const handleSubmit = (e: React.FormEvent, searchQuery: string) => {
         e.preventDefault()
