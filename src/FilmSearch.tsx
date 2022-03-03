@@ -22,7 +22,7 @@ const FilmSearch: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await (await fetch(`http://www.omdbapi.com/?type=movie&t=${finalQuery}&apikey=${API_KEY}`)).json()
+                const result = await (await fetch(`https://www.omdbapi.com/?type=movie&t=${finalQuery}&apikey=${API_KEY}`)).json()
                 setData(result)
                 setIsLoading(false)
             } catch (err) {
