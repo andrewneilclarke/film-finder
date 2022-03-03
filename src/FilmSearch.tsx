@@ -45,6 +45,7 @@ const FilmSearch: React.FC = () => {
                 <button type="submit">go</button>
             </form>
             {isLoading && '...Loading'}
+            {error && JSON.stringify(error)}
             {data?.Actors && <FilmDisplay data={data} />}
         </>
     )
