@@ -25,3 +25,7 @@ export interface Film {
     imdbRating: string,
     imdbVotes: string,
 }
+export interface FilmNotFound {
+    Response: boolean,
+    Error: string
+}

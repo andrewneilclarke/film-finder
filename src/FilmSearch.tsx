@@ -8,6 +8,7 @@ const FilmSearch: React.FC = () => {
     const [finalQuery, setFinalQuery] = useState('The imitation game')
     const [data, setData] = useState<Film | null>(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState<unknown>('')
 
     const API_KEY = 'c5e8f2c8'
 
@@ -15,6 +16,7 @@ const FilmSearch: React.FC = () => {
         e.preventDefault()
         setIsLoading(true)
         setFinalQuery(searchQuery)
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -26,26 +28,24 @@ const FilmSearch: React.FC = () => {
                 setIsLoading(false)
             } catch (err) {
                 console.log(err)
+                setError(err.message)
             }
         }
         fetchData()
+        return () => {
+            setIsLoading(false)
 
-        // useEffect(() => {
-        //   formatData()
-        // }, [data])
-
-
+        };
     }, [API_KEY, finalQuery])
-    console.log(data)
 
     return (
         <>
-            <form className="form" onSubmit={(e) => handleSubmit(e, filmSearch)}>
+            <form className="form" onSubmit={(e) => { if (filmSearch) { handleSubmit(e, filmSearch) } }}>
                 <input type="text" value={filmSearch} className="search-input" onChange={(e) => setFilmSearch(e.target.value)} />
                 <button type="submit">go</button>
             </form>
             {isLoading && '...Loading'}
-            {data && <FilmDisplay data={data} />}
+            {data?.Actors && <FilmDisplay data={data} />}
         </>
     )
 }
