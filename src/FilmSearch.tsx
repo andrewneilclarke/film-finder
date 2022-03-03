@@ -20,7 +20,6 @@ const FilmSearch: React.FC = () => {
     }
 
     useEffect(() => {
-        console.log('useEffect ran')
         const fetchData = async () => {
             try {
                 const result = await (await fetch(`http://www.omdbapi.com/?type=movie&t=${finalQuery}&apikey=${API_KEY}`)).json()
