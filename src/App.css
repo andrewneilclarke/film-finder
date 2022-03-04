@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   letter-spacing: 1px;
@@ -19,15 +18,20 @@
 
 
 .header {
-  background-color: #282c34;
+  background-color: var(--blue);
   min-height: 4em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: rgb(93, 174, 199);
+  color: #282c34;
   width: 100%;
+  margin: 2em 0;
+}
+
+.film-search {
+  padding: 3px;
 }
 
 .search-input {
@@ -50,6 +54,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: 0.5em;
 }
 
 .form button {
@@ -82,4 +87,25 @@
   font-weight: 600;
   font-size: x-large;
 
+}
+
+/* Media Queries */
+@media (max-width: 670px) {
+  .search-input {
+    height: 2em;
+    font-size: calc(14px + 1.5vmin);
+    margin: 1.2em 1.2em;
+    padding: 0 0.6em;
+  }
+  .form button {
+    height: 4em;
+    width: 4em;
+  }
+  .App {
+   font-size: small;
+  }
+  .App h5 {
+   font-size: large;
+   margin: 1em 0;
+  }
 }

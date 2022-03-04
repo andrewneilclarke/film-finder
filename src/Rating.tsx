@@ -4,7 +4,7 @@ interface Props {
 
 const Rating: React.FC<Props> = ({ averageScore }) => {
     return (
-        <div className="rating">
+        <div className="rating" style={{ color: '#282c34' }}>
             {averageScore > 68 ? (
                 <div style={{ backgroundColor: "#5dc77d", height: '3em', width: '3em', borderRadius: '100%' }}>Yes</div>
             ) : (
