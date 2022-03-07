@@ -13,12 +13,14 @@
   height: 100vh;
   letter-spacing: 1px;
   background-color: #282c34;
-  color: #999
+  color: #999;
+  overflow: hidden;
 }
 
 
 .header {
   background-color: var(--blue);
+  height: 20vh;
   min-height: 4em;
   display: flex;
   flex-direction: column;
@@ -31,6 +33,7 @@
 }
 
 .film-search {
+  height: 80vh;
   padding: 3px;
 }
 
@@ -103,9 +106,20 @@
   }
   .App {
    font-size: small;
+   overflow: hidden;
+  }
+  .film-search {
+    height: 120vh;
   }
   .App h5 {
    font-size: large;
    margin: 1em 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .film-search {
+    height: 70vh;
+    overflow: hidden;
   }
 }

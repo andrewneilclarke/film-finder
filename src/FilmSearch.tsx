@@ -18,12 +18,14 @@ const FilmSearch: React.FC = () => {
         e.preventDefault()
         setIsLoading(true)
         setFinalQuery(searchQuery)
+        setFilmSearch('')
         setIsLoading(false)
     }
 
     useEffect(() => {
         inputRef.current?.focus()
-    }, [])
+        console.log('input focussed')
+    }, [finalQuery])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,7 +46,7 @@ const FilmSearch: React.FC = () => {
     }, [API_KEY, finalQuery])
 
     return (
-        <>
+        <div className="film-search">
             <form className="form" onSubmit={(e) => { if (filmSearch) { handleSubmit(e, filmSearch) } }}>
                 <input ref={inputRef} type="text" value={filmSearch} className="search-input" onChange={(e) => setFilmSearch(e.target.value)} />
                 <button type="submit">go</button>
@@ -53,7 +55,7 @@ const FilmSearch: React.FC = () => {
             {error && JSON.stringify(error)}
             {data?.Actors && <FilmDisplay data={data} />}
             {!data?.Response && console.log(data?.Response)}
-        </>
+        </div>
     )
 }
 
