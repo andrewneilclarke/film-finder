@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react"
 import FilmDisplay from "./FilmDisplay"
 import { Film } from './Types'
 
-
 const FilmSearch: React.FC = () => {
     const [filmSearch, setFilmSearch] = useState('')
     const [finalQuery, setFinalQuery] = useState('The imitation game')
@@ -10,26 +9,21 @@ const FilmSearch: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<unknown>('')
 
-
+    // get api key from netlify
     let serverURL: string;
-    const fetchAPIKey = async () => {
-        try {
-            fetch('../netlify/functions/api')
-                .then(response => response.json())
-                .then(json => {
-                    serverURL = json.api;
-                    console.log(serverURL)
-                })
-        } catch (err) {
-            console.log(err)
-            console.log(serverURL)
-        }
+    try {
+        fetch('../public/netlify/functions/api')
+            .then(response => {
+                serverURL = response.url;
+                console.log(serverURL)
+            })
+    } catch (err) {
+        console.log(err)
     }
-
-    fetchAPIKey()
 
     const API_KEY = process.env.REACT_APP_API_KEY
 
+    // reference the input field
     const inputRef = useRef<HTMLInputElement>(null)
 
     const handleSubmit = (e: React.FormEvent, searchQuery: string) => {
