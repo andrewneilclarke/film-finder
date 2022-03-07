@@ -15,7 +15,7 @@ const FilmSearch: React.FC = () => {
         fetch('../public/netlify/functions/api')
             .then(response => {
                 serverURL = response.url;
-                console.log(serverURL)
+                console.log(serverURL, response)
             })
     } catch (err) {
         console.log(err)
@@ -66,7 +66,6 @@ const FilmSearch: React.FC = () => {
             {isLoading && '...Loading'}
             {error && JSON.stringify(error)}
             {data?.Actors && <FilmDisplay data={data} />}
-            {!data?.Response && console.log(data?.Response)}
         </div>
     )
 }
