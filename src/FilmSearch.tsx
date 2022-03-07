@@ -10,6 +10,24 @@ const FilmSearch: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<unknown>('')
 
+
+    let serverURL: string;
+    const fetchAPIKey = async () => {
+        try {
+            fetch('../netlify/functions/api')
+                .then(response => response.json())
+                .then(json => {
+                    serverURL = json.api;
+                    console.log(serverURL)
+                })
+        } catch (err) {
+            console.log(err)
+            console.log(serverURL)
+        }
+    }
+
+    fetchAPIKey()
+
     const API_KEY = process.env.REACT_APP_API_KEY
 
     const inputRef = useRef<HTMLInputElement>(null)
@@ -23,8 +41,8 @@ const FilmSearch: React.FC = () => {
     }
 
     useEffect(() => {
+        // focus the input when needed
         inputRef.current?.focus()
-        console.log('input focussed')
     }, [finalQuery])
 
     useEffect(() => {
